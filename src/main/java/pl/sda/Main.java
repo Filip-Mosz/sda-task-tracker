@@ -1,5 +1,10 @@
 package pl.sda;
 
+import pl.sda.model.Bug;
+import pl.sda.model.Task;
+
+import java.time.Duration;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -104,5 +109,14 @@ public class Main {
 
 
          */
+        Duration test = Duration.ofDays(12);
+        Task task1 = new Task("zadanie", "HIGH", 12);
+
+        Bug testBug = new Bug("NieDziała", "HIGH", "2020,13,89,15,45");
+        Bug testBug2 = new Bug("Działa", "Medium", "2020,10,12,15,45");
+        System.out.println(testBug.getTimeOfSolution());
+        System.out.println(testBug.getDateOfAddition());
+        System.out.println(testBug2.getTimeOfSolution());
+        System.out.println(testBug2.getDateOfAddition());
     }
 }
