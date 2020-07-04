@@ -4,6 +4,8 @@ import pl.sda.model.Bug;
 import pl.sda.model.Task;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -118,5 +120,6 @@ public class Main {
         System.out.println(testBug.getDateOfAddition());
         System.out.println(testBug2.getTimeOfSolution());
         System.out.println(testBug2.getDateOfAddition());
+//nowa linijka
     }
 }
