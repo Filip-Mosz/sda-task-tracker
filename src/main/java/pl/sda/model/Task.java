@@ -1,7 +1,11 @@
 package pl.sda.model;
 
-import java.time.Duration;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.Duration;
+@Getter
+@Setter
 public class Task extends BaseErrand{
 
     private Duration estimatedTimeOfComlpetion;

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class Bug extends BaseErrand{
     LocalDateTime timeOfSolution;
+    ErrandState currentState;
 
     public Bug() {
         super();

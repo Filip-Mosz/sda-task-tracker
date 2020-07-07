@@ -1,29 +1,50 @@
 package pl.sda.model;
 //* Powinna mieć pole przechowujące czas utworzenia obiektu(created)
-//    * Powinna zaimplementować metodę nextState():
+//    done Powinna zaimplementować metodę nextState():
 //          tak aby zwracać nowy obiekt typu DoneTaskState (do konstruktora przekaż zadanie z tego statusu) i ustawić task.setCurrentState na nowo utworzony obiekt.
-//    * Powinna zaimplementować metodę prevState():
+//    done Powinna zaimplementować metodę prevState():
 //          tak aby zwracać nowy obiekt typu ToDoTaskState (do konstruktora przekaż zadanie z tego statusu) i ustawić task.setCurrentState na nowo utworzony obiekt.
-//    * getMessage() powinno zwracać "In progress - <czas teraz - czas utworzenia obiektu>"
+//    done* getMessage() powinno zwracać "In progress - <czas teraz - czas utworzenia obiektu>"
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class InProgressTaskState implements ErrandState {
     Task task;
     LocalDateTime created;
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+
+    public InProgressTaskState(Task task, LocalDateTime created) {
+        this.task = task;
+        this.created = created;
+    }
 
     @Override
     public ErrandState nextState() {
-        return new DoneTaskState();
+        ErrandState state = new DoneTaskState(task,created);
+
+        task.setCurrentState(state);
+        return state;
+
     }
 
     @Override
     public ErrandState previousState() {
-        return null;
+        ErrandState state = new ToDoTaskState(task);
+
+        task.setCurrentState(state);
+        return state;
     }
 
     @Override
     public String getMessage() {
-        return null;
+
+        return " In progress - " + LocalDateTime.now().format(dateFormat) + " - " + created.format(dateFormat);
+    }
+
+    @Override
+    public String toString() {
+        return "InProgress - <" + LocalDateTime.now().format(dateFormat) + " - " + created.format(dateFormat) +
+                '>';
     }
 }
